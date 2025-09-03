@@ -11,11 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domínio", "2 - Domíni
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infraestruturas", "3 - Infraestruturas", "{039891B2-6465-49DB-A2A7-B0C852398E30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuarioApp.Domain", "UsuarioApp.Domain\UsuarioApp.Domain.csproj", "{EFBF9456-7F4A-458D-BDC6-2E8C156CED66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosApp.Domain", "UsuarioApp.Domain\UsuariosApp.Domain.csproj", "{EFBF9456-7F4A-458D-BDC6-2E8C156CED66}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosApp.Infra.Data", "UsuariosApp.Infra.Data\UsuariosApp.Infra.Data.csproj", "{D2DB7128-1652-4395-B44A-A154264BC3F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsuariosApp.Infra.Security", "UsuariosApp.Infra.Security\UsuariosApp.Infra.Security.csproj", "{36CEE571-29C1-419F-95BA-B23D429C1311}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{E52C2A11-47E1-444F-A5F1-70CCD7852C97}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		UsuariosApp.API\load_data.sql = UsuariosApp.API\load_data.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
