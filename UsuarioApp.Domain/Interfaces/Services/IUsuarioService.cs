@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UsuariosApp.Domain.Dtos.Requests;
 using UsuariosApp.Domain.Dtos.Responses;
+using UsuariosApp.Domain.DTOs.Requests;
 
 namespace UsuariosApp.Domain.Interfaces.Services
 {
@@ -14,6 +15,8 @@ namespace UsuariosApp.Domain.Interfaces.Services
     public interface IUsuarioService
     {
         CriarUsuarioResponse CriarUsuario(CriarUsuarioRequest request);
+
+        AutenticarUsuarioResponse AutenticarUsuario(AutenticarUsuarioRequest request);
     }
 }
 

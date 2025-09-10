@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UsuariosApp.Domain.Dtos.Requests;
 using UsuariosApp.Domain.Dtos.Responses;
+using UsuariosApp.Domain.DTOs.Requests;
 using UsuariosApp.Domain.Interfaces.Services;
 
 namespace UsuariosApp.API.Controllers
@@ -35,9 +36,22 @@ namespace UsuariosApp.API.Controllers
         }
 
         [HttpPost("autenticar")]
-        public IActionResult Autenticar()
+        [ProducesResponseType(typeof(AutenticarUsuarioResponse), 200)]
+        public IActionResult Autenticar([FromBody] AutenticarUsuarioRequest request)
         {
-            return Ok();
+            try
+            {
+                var response = usuarioService.AutenticarUsuario(request);
+                return StatusCode(200, response);
+            }
+            catch(ApplicationException e)
+            {
+                return StatusCode(401, new { e.Message });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new { e.Message });
+            }
         }
     }
 }

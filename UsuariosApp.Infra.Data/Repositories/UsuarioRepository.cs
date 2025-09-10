@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using UsuarioApp.Domain.Entities;
 using UsuariosApp.Domain.Entities;
 using UsuariosApp.Domain.Interfaces.Repositories;
@@ -29,6 +30,7 @@ namespace UsuariosApp.Infra.Data.Repositories
         {
             return dataContext
                     .Set<Usuario>()
+                    .Include(u => u.Perfil) //LEFT JOIN
                     .Where(u => u.Email.Equals(email)
                              && u.Senha.Equals(senha))
                     .SingleOrDefault();
