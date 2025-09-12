@@ -17,6 +17,8 @@ namespace UsuariosApp.Domain.Interfaces.Services
         CriarUsuarioResponse CriarUsuario(CriarUsuarioRequest request);
 
         AutenticarUsuarioResponse AutenticarUsuario(AutenticarUsuarioRequest request);
+
+        ObterDadosUsuarioResponse ObterDadosUsuario(string email);
     }
 }
 

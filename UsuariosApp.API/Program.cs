@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using UsuariosApp.Domain.Interfaces.Repositories;
 using UsuariosApp.Domain.Interfaces.Security;
@@ -37,7 +40,25 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IPerfilRepository, PerfilRepository>();
 builder.Services.AddScoped<IJwtBearerSecurity, JwtBearerSecurity>();
 
-
+//Configurar a politica de autenticação do projeto
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    //configurações para validar o token
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true, //validando a expiração do token
+        ValidateIssuerSigningKey = true, //valida a chave de assinatura do token
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes
+            (builder.Configuration.GetValue<string>("JwtBearerSettings:SecretKey")))
+    };
+});
 
 var app = builder.Build();
 
@@ -56,9 +77,12 @@ app.MapScalarApiReference(options =>
     options.WithTheme(ScalarTheme.BluePlanet);
 });
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 app.Run();
 
-
+//Configurando a classe Program.cs como pública
+public partial class Program { }
 

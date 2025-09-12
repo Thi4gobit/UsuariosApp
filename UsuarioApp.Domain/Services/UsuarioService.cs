@@ -98,6 +98,29 @@ namespace UsuariosApp.Domain.Services
                     AccessToken: jwtBearerSecurity.GenerateToken(usuario.Email, usuario.Perfil.Nome)
                 );
         }
+
+        public ObterDadosUsuarioResponse ObterDadosUsuario(string email)
+        {
+            var usuario = usuarioRepository.GetByEmail(email);
+
+            if (usuario == null)
+                throw new ApplicationException("Usuário não encontrado.");
+
+            return new ObterDadosUsuarioResponse(
+                    Id: usuario.Id,
+                    Nome: usuario.Nome,
+                    Email: usuario.Email,
+                    Perfil: usuario.Perfil?.Nome,
+                    Permissoes: usuario.Perfil?.Permissoes?
+                        .Select(p => new PermissaoResponse
+                        (
+                            Nome: p.Permissao.Nome,
+                            Servico: p.Permissao.Servico,
+                            Tipo: p.Permissao.Tipo
+                        ))
+                        .ToList() ?? new List<PermissaoResponse>()
+                );
+        }
     }
 }
 

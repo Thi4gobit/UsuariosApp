@@ -24,6 +24,11 @@ namespace UsuariosApp.Domain.Interfaces.Repositories
         /// Método para retornar 1 usuário através do email e senha.
         /// </summary>
         Usuario? GetByEmailAndSenha(string email, string senha);
+
+        /// <summary>
+        /// Método para retornar 1 usuário através do email.
+        /// </summary>
+        Usuario? GetByEmail(string email);
     }
 }
 

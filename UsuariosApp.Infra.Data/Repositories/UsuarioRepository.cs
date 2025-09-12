@@ -35,6 +35,17 @@ namespace UsuariosApp.Infra.Data.Repositories
                              && u.Senha.Equals(senha))
                     .SingleOrDefault();
         }
+
+        public Usuario? GetByEmail(string email)
+        {
+            return dataContext
+                    .Set<Usuario>()
+                    .Include(u => u.Perfil) //LEFT JOIN 'Perfil'
+                    .ThenInclude(p => p.Permissoes) //LEFT JOIN 'PerfilPermissao'
+                    .ThenInclude(p => p.Permissao) //LEFT JOIN 'Permissao'
+                    .Where(u => u.Email.Equals(email))
+                    .SingleOrDefault();
+        }
     }
 }
 

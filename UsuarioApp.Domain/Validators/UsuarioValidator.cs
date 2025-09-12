@@ -14,16 +14,16 @@ namespace UsuariosApp.Domain.Validators
         {
             RuleFor(u => u.Nome)
                 .NotEmpty().WithMessage("O nome do usuário é obrigatório.")
-                .Length(6,100).WithMessage("O nome do usuário deve ter de 6 a 100 caracteres.");
+                .Length(6,100).WithMessage("O nome deve ter de 6 a 100 caracteres.");
 
             RuleFor(u => u.Email)
-                .NotEmpty().WithMessage("O email do usuário é obrigatório.")
-                .EmailAddress().WithMessage("O email do usuário deve ser um endereço de email válido.");
+                .NotEmpty().WithMessage("O endereço de email do usuário é obrigatório.")
+                .EmailAddress().WithMessage("Informe um endereço de email válido.");
 
             RuleFor(u => u.Senha)
                 .NotEmpty().WithMessage("A senha do usuário é obrigatória.")
                 .Matches(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
-                    .WithMessage("A senha do usuário deve ter no mínimo 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.");
+                    .WithMessage("A senha deve ter pelo menos uma letra minúscula, uma letra maiúscula, um número, um símbolo e pelo menos 8 caracteres.");
         }
     }
 }

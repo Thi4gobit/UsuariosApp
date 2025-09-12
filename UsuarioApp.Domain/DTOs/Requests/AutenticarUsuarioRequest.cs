@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace UsuariosApp.Domain.DTOs.Requests
 {
-    public record AutenticarUsuarioRequest
-    {
-        public string? Email { get; set; }
-        public string? Senha { get; set; }
-    }
+    public record AutenticarUsuarioRequest(
+        string? Email,
+        string? Senha
+    );
 }

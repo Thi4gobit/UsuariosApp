@@ -23,7 +23,7 @@ namespace UsuariosApp.Infra.Security.Services
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Name, user),
-                new Claim("Role", role)
+                new Claim("role", role)
             };
 
             //Criação do TOKEN JWT
