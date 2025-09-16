@@ -60,12 +60,24 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+//Configuração do CORS (Politica de acesso da API)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.MapOpenApi();
+//}
+app.MapOpenApi();
 
 //Executar a documentação do Swagger
 app.UseSwagger();
@@ -76,6 +88,9 @@ app.MapScalarApiReference(options =>
 {
     options.WithTheme(ScalarTheme.BluePlanet);
 });
+
+//Ativar a configuração do CORS
+app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();

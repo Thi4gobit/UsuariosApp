@@ -22,8 +22,8 @@ namespace UsuariosApp.Infra.Security.Services
             // claim (informações do usuário)
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Name, user),
-                new Claim("role", role)
+                new Claim(ClaimTypes.Name, user),
+                new Claim(ClaimTypes.Role, role)
             };
 
             //Criação do TOKEN JWT
